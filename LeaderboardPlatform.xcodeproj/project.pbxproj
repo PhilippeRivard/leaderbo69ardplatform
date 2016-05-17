@@ -69,7 +69,7 @@
 		640EE5EE1CDC04B500E1B68F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640EE4AA1CDC04B400E1B68F /* FBSDKShareKit.framework */; };
 		640EE69F1CDC3FB900E1B68F /* FacebookOrEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640EE69E1CDC3FB900E1B68F /* FacebookOrEmailVC.swift */; };
 		641246661CD91FD50048FBB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641246651CD91FD50048FBB5 /* AppDelegate.swift */; };
-		641246681CD91FD50048FBB5 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641246671CD91FD50048FBB5 /* LeaderboardVC.swift */; };
+		641246681CD91FD50048FBB5 /* FriendsLeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641246671CD91FD50048FBB5 /* FriendsLeaderboardVC.swift */; };
 		6412466D1CD91FD60048FBB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412466C1CD91FD60048FBB5 /* Assets.xcassets */; };
 		641246701CD91FD60048FBB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6412466E1CD91FD60048FBB5 /* LaunchScreen.storyboard */; };
 		6412467B1CD91FD60048FBB5 /* LeaderboardPlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412467A1CD91FD60048FBB5 /* LeaderboardPlatformTests.swift */; };
@@ -83,6 +83,8 @@
 		6430A7641CE8903600B32841 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640EE4A71CDC04B400E1B68F /* FBSDKCoreKit.framework */; };
 		6430A7661CE8903900B32841 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640EE4A81CDC04B400E1B68F /* FBSDKLoginKit.framework */; };
 		6430A7681CE8903C00B32841 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640EE4A91CDC04B400E1B68F /* FBSDKMessengerShareKit.framework */; };
+		6430A7701CE9A14E00B32841 /* SchoolLeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430A76F1CE9A14E00B32841 /* SchoolLeaderboardVC.swift */; };
+		6430A7721CE9A19000B32841 /* LocationLeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430A7711CE9A19000B32841 /* LocationLeaderboardVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,7 +221,7 @@
 		640EE69E1CDC3FB900E1B68F /* FacebookOrEmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookOrEmailVC.swift; path = ../FacebookOrEmailVC.swift; sourceTree = "<group>"; };
 		641246621CD91FD50048FBB5 /* LeaderboardPlatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeaderboardPlatform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		641246651CD91FD50048FBB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		641246671CD91FD50048FBB5 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
+		641246671CD91FD50048FBB5 /* FriendsLeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsLeaderboardVC.swift; sourceTree = "<group>"; };
 		6412466C1CD91FD60048FBB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6412466F1CD91FD60048FBB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		641246711CD91FD60048FBB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,6 +235,8 @@
 		641246951CD926DC0048FBB5 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		641246991CD9290E0048FBB5 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingCell.swift; path = ../RankingCell.swift; sourceTree = "<group>"; };
 		6430A7551CE867E800B32841 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		6430A76F1CE9A14E00B32841 /* SchoolLeaderboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolLeaderboardVC.swift; sourceTree = "<group>"; };
+		6430A7711CE9A19000B32841 /* LocationLeaderboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationLeaderboardVC.swift; path = ../LocationLeaderboardVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,7 +539,9 @@
 				640EE40B1CDAD1A300E1B68F /* PickSchoolVC.swift */,
 				640EE4091CDAD17400E1B68F /* ResetPasswordVC.swift */,
 				640EE4071CDAD15D00E1B68F /* SignUpVC.swift */,
-				641246671CD91FD50048FBB5 /* LeaderboardVC.swift */,
+				641246671CD91FD50048FBB5 /* FriendsLeaderboardVC.swift */,
+				6430A76F1CE9A14E00B32841 /* SchoolLeaderboardVC.swift */,
+				6430A7711CE9A19000B32841 /* LocationLeaderboardVC.swift */,
 				641246991CD9290E0048FBB5 /* RankingCell.swift */,
 				641246651CD91FD50048FBB5 /* AppDelegate.swift */,
 				6412466C1CD91FD60048FBB5 /* Assets.xcassets */,
@@ -800,6 +806,7 @@
 			files = (
 				640EE4081CDAD15D00E1B68F /* SignUpVC.swift in Sources */,
 				640EE48D1CDAD97C00E1B68F /* Pods-NotSureIfThisWorksUITests-dummy.m in Sources */,
+				6430A7701CE9A14E00B32841 /* SchoolLeaderboardVC.swift in Sources */,
 				640EE4731CDAD97C00E1B68F /* Pods-acknowledgements.markdown in Sources */,
 				640EE40C1CDAD1A300E1B68F /* PickSchoolVC.swift in Sources */,
 				6430A7561CE867E800B32841 /* Player.swift in Sources */,
@@ -807,6 +814,7 @@
 				640EE4021CDAD13100E1B68F /* csv.swift in Sources */,
 				640EE4111CDAD5CF00E1B68F /* SchoolSearchCell.swift in Sources */,
 				640EE47D1CDAD97C00E1B68F /* Pods-NotSureIfThisWorks-dummy.m in Sources */,
+				6430A7721CE9A19000B32841 /* LocationLeaderboardVC.swift in Sources */,
 				640EE40E1CDAD1B200E1B68F /* SignUpOrSignInVC.swift in Sources */,
 				640EE4751CDAD97C00E1B68F /* Pods-dummy.m in Sources */,
 				640EE69F1CDC3FB900E1B68F /* FacebookOrEmailVC.swift in Sources */,
@@ -815,7 +823,7 @@
 				640EE46B1CDAD97C00E1B68F /* Empty.m in Sources */,
 				640EE47B1CDAD97C00E1B68F /* Pods-NotSureIfThisWorks-acknowledgements.markdown in Sources */,
 				641246941CD9268F0048FBB5 /* DataService.swift in Sources */,
-				641246681CD91FD50048FBB5 /* LeaderboardVC.swift in Sources */,
+				641246681CD91FD50048FBB5 /* FriendsLeaderboardVC.swift in Sources */,
 				640EE4851CDAD97C00E1B68F /* Pods-NotSureIfThisWorksTests-dummy.m in Sources */,
 				640EE40A1CDAD17400E1B68F /* ResetPasswordVC.swift in Sources */,
 				6412469A1CD9290E0048FBB5 /* RankingCell.swift in Sources */,
