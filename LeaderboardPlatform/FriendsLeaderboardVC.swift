@@ -8,8 +8,9 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
-class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,7 +35,26 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
         DataService.ds.REF_BASE.childByAppendingPath("LCC").childByAppendingPath("faggot").setPriority(5)
          
  */
-        tableView.hidden = true
+        
+        DataService.ds.REF_BASE.childByAppendingPath("LCC").observeEventType(.Value, withBlock: { snapshot in
+            self.players = []
+            self.backwardsArrayFinished = false
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                for snap in snapshots {
+                    let player = Player(playerName: snap.key, highscore: (snap.value as? Int)!)
+                    self.players.append(player)
+                    
+                }
+            }
+            self.players = self.players.reverse()
+            self.tableView.reloadData()
+        })
+        
+        
+        
+        
+        tableView.hidden = false
+        /*
         DataService.ds.REF_USERS.childByAppendingPath("facebook:10209204778739230").childByAppendingPath("school").observeSingleEventOfType(.Value, withBlock: { snapshot in
             if snapshot.value as? String != nil {
                 self.tableView.hidden = false
@@ -47,6 +67,8 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
             }
  */
         })
+ */
+        /*
  
         DataService.ds.REF_BASE.childByAppendingPath("LCC").observeSingleEventOfType(.Value, withBlock: {
             snapshot in
@@ -54,6 +76,7 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
             
             self.tableView.reloadData()
         })
+ */
         
         
         //IM NOT SURE IF I SHOULD USE QUERYORDEREDBYVALUE OR JUST REGULAR OBSERVE EVENT???????
@@ -69,7 +92,7 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
         })
         */
         
-        self.redoPopulate()
+        //self.redoPopulate()
         /*
         DataService.ds.REF_BASE.childByAppendingPath("LCC").observeEventType(.ChildAdded, withBlock: { snapshot in
             self.counter += 1
@@ -82,7 +105,7 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
          */
  
         
-        
+        /*
         
         DataService.ds.REF_BASE.childByAppendingPath("LCC").observeEventType(.ChildChanged, withBlock: { snapshot in
             self.childWasAdded = true
@@ -91,7 +114,7 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
             
         })
  
-        
+        */
         
         
     }
@@ -102,7 +125,18 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let player = players[indexPath.row]
+        if let cell = tableView.dequeueReusableCellWithIdentifier("RankingCell") as? RankingCell {
+            cell.configureCell(player, number: indexPath.row)
+             
+            return cell
+            
+            
+        }
+ 
         
+        
+        /*
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("RankingCell", forIndexPath: indexPath) as? RankingCell {
             let player: Player!
@@ -127,10 +161,11 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
             
             return cell
         }
+ */
             
         
         else {
-            return UITableViewCell()
+            return RankingCell()
         }
         
     }
@@ -160,14 +195,14 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func onSchoolBtnPressed(sender: AnyObject) {
-        performSegueWithIdentifier("LocationToSchool", sender: nil)
+        performSegueWithIdentifier("FriendsToSchool", sender: nil)
         
     }
     
-    @IBAction func onFriendsBtnPressed(sender: AnyObject) {
-        performSegueWithIdentifier("LocationToFriends", sender: nil)
-        
+    @IBAction func onLocationBtnPressed(sender: AnyObject) {
+        performSegueWithIdentifier("FriendsToLocation", sender: nil)
     }
+    
 
 
 }

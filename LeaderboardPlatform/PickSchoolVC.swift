@@ -71,7 +71,7 @@ class PickSchoolVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         DataService.ds.REF_USERS.childByAppendingPath(NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as? String).childByAppendingPath("pickedSchool").setValue(true)
         
-        performSegueWithIdentifier("pickedSchool", sender: university)
+        performSegueWithIdentifier("PickedSchool", sender: university)
     }
     
     

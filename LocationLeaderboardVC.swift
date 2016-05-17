@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
@@ -93,8 +94,8 @@ class LocationLeaderboardVC: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
-    @IBAction func onLocationBtnPressed(sender: AnyObject) {
-        performSegueWithIdentifier("FriendsToLocation", sender: nil)
+    
+    @IBAction func onFriendsBtnPressed(sender: AnyObject) {
         
     }
     

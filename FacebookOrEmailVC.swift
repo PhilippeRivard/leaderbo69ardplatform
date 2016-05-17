@@ -11,9 +11,21 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class FacebookOrEmailVC: UIViewController {
+    
+    @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var alreadyHaveAccountLabel: UILabel!
+    
+    @IBOutlet weak var logInButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingLabel.hidden = true
+        facebookButton.hidden = false
+        emailButton.hidden = false
+        alreadyHaveAccountLabel.hidden = false
+        logInButton.hidden = false
         DataService.ds.REF_BASE.childByAppendingPath("LCC").queryOrderedByValue().queryLimitedToLast(3).observeEventType(.ChildAdded, withBlock: { snapshot in
             print("The \(snapshot.key) dinosaur's score is \(snapshot.value)")
             print("nigger")
@@ -31,6 +43,8 @@ class FacebookOrEmailVC: UIViewController {
     }
     
     @IBAction func FacebookButton(sender: AnyObject) {
+        
+        
         let facebookLogin = FBSDKLoginManager()
         
     facebookLogin.logInWithReadPermissions(["email"]) {
@@ -40,6 +54,12 @@ class FacebookOrEmailVC: UIViewController {
                 print("Facebook login failed. Error \(facebookError)")
             }
             else {
+                self.loadingLabel.hidden = false
+                self.facebookButton.hidden = true
+                self.emailButton.hidden = true
+                self.alreadyHaveAccountLabel.hidden = true
+                self.logInButton.hidden = true
+                
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
                 DataService.ds.REF_BASE.authWithOAuthProvider("facebook", token: accessToken, withCompletionBlock: { error, authData in
@@ -47,6 +67,13 @@ class FacebookOrEmailVC: UIViewController {
                         print("Login failed. \(error)")
                     }
                     else {
+                        
+                        //HE SAID SOMETHING ABOUT HOW IT'S BAD TO JUST DO LET USER HERE
+                        
+                       let user = ["provider": authData.provider]
+                        DataService.ds.REF_USERS.childByAppendingPath(authData.uid).setValue(user)
+                        
+                        
                         //get the name and email of whoever locked in through facebook
                         let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: accessToken, version: nil, HTTPMethod: "GET")
                         req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
@@ -61,18 +88,8 @@ class FacebookOrEmailVC: UIViewController {
                             }
                         })
                         //end of getting email and name with accesstoken through facebook
-                        DataService.ds.REF_USERS.childByAppendingPath(authData.uid).childByAppendingPath("pickedSchool").observeSingleEventOfType(.Value, withBlock: { snapshot in
-                            if snapshot.value as? Bool == true {
-                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                                self.performSegueWithIdentifier("logInNoNeedForSchoolPick", sender: nil)
-                                print("worked")
-                            }
-                            else {
-                                DataService.ds.REF_USERS.childByAppendingPath(authData.uid).childByAppendingPath("pickedSchool").setValue(false)
-                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                                self.performSegueWithIdentifier("fbFirstTime", sender: nil)
-                            }
-                        })
+                        NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                        self.performSegueWithIdentifier("logInNoNeedForSchoolPick", sender: nil)
                     }
                     
                 })
