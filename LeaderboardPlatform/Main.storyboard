@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="88l-tF-lTV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vER-e2-wCU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--StartUpPageVC-->
+        <scene sceneID="aGw-9M-5G6">
+            <objects>
+                <viewController id="vER-e2-wCU" userLabel="StartUpPageVC" customClass="StartUpPageVC" customModule="LeaderboardPlatform" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VVL-Ka-7Kl"/>
+                        <viewControllerLayoutGuide type="bottom" id="8sW-ZR-Hq6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cMv-TA-mNb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homie App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLE-sT-UKX">
+                                <rect key="frame" x="249" y="289" width="102" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="102" id="5SS-OZ-dCE"/>
+                                    <constraint firstAttribute="height" constant="21" id="JMI-1N-A1O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nLE-sT-UKX" firstAttribute="centerY" secondItem="cMv-TA-mNb" secondAttribute="centerY" id="RpB-Pg-Wsn"/>
+                            <constraint firstItem="nLE-sT-UKX" firstAttribute="centerX" secondItem="cMv-TA-mNb" secondAttribute="centerX" id="aGQ-d2-Xm2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="88l-tF-lTV" kind="show" identifier="FacebookOrEmailVC" id="3sS-c5-ETH"/>
+                        <segue destination="FeX-fg-eCV" kind="show" identifier="AlreadyLoggedIn" id="Xma-q5-tMs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ob-b9-92d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2796" y="126"/>
+        </scene>
         <!--Facebook Or EmailVC-->
         <scene sceneID="sSM-VG-7km">
             <objects>
@@ -971,6 +1009,16 @@
                                     <constraint firstItem="TkL-r0-ZHi" firstAttribute="height" secondItem="DMD-6v-bki" secondAttribute="height" id="rnK-mg-zVT"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading Leaderboards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3b-fg-ANf">
+                                <rect key="frame" x="279" y="116" width="181" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="181" id="gHD-5D-cqF"/>
+                                    <constraint firstAttribute="height" constant="21" id="r9h-Bp-71P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -983,9 +1031,11 @@
                             <constraint firstItem="4z8-29-SPm" firstAttribute="top" secondItem="ecj-V3-sNo" secondAttribute="bottom" id="Fwi-f3-DCd"/>
                             <constraint firstItem="061-8N-yUS" firstAttribute="top" secondItem="WAj-MK-gyj" secondAttribute="bottom" constant="86" id="Gog-6O-9kh"/>
                             <constraint firstItem="4z8-29-SPm" firstAttribute="top" secondItem="WAj-MK-gyj" secondAttribute="bottom" constant="8" id="JoP-A5-ywl"/>
+                            <constraint firstItem="V3b-fg-ANf" firstAttribute="centerX" secondItem="g2p-YR-Hzh" secondAttribute="centerX" id="Nll-Je-rxo"/>
                             <constraint firstItem="Ydh-2E-dVN" firstAttribute="leading" secondItem="g2p-YR-Hzh" secondAttribute="leading" id="Pce-lE-cHb"/>
                             <constraint firstAttribute="trailing" secondItem="4z8-29-SPm" secondAttribute="trailing" id="RYj-iS-swV"/>
                             <constraint firstItem="061-8N-yUS" firstAttribute="leading" secondItem="g2p-YR-Hzh" secondAttribute="leadingMargin" id="RqC-D9-6DP"/>
+                            <constraint firstItem="V3b-fg-ANf" firstAttribute="centerY" secondItem="g2p-YR-Hzh" secondAttribute="centerY" id="WqV-ag-7jI"/>
                             <constraint firstItem="PmW-uR-myp" firstAttribute="centerX" secondItem="g2p-YR-Hzh" secondAttribute="centerX" id="cLM-Lu-1aR"/>
                             <constraint firstItem="ecj-V3-sNo" firstAttribute="top" secondItem="WAj-MK-gyj" secondAttribute="bottom" constant="35" id="chm-GU-70T"/>
                             <constraint firstItem="4z8-29-SPm" firstAttribute="top" secondItem="WAj-MK-gyj" secondAttribute="bottom" constant="64" id="dZe-S7-pJe"/>
@@ -1010,9 +1060,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="friendsButton" destination="DMD-6v-bki" id="KeW-q6-qiR"/>
+                        <outlet property="loadingLabel" destination="V3b-fg-ANf" id="m4l-EW-Y6M"/>
+                        <outlet property="locationButton" destination="Jgk-NM-9v6" id="mLp-bO-U6I"/>
+                        <outlet property="schoolButton" destination="TkL-r0-ZHi" id="7hf-ED-4Tt"/>
                         <outlet property="tableView" destination="4z8-29-SPm" id="aL4-cO-am6"/>
-                        <segue destination="S8r-3y-Kdp" kind="show" identifier="FriendsToSchool" action="showDetailViewController:sender:" id="Gcg-Po-Wmu"/>
-                        <segue destination="2y1-1I-wSH" kind="show" identifier="FriendsToLocation" id="eLY-iL-gCC"/>
+                        <segue destination="S8r-3y-Kdp" kind="show" identifier="FriendsToSchool" animates="NO" action="showDetailViewController:sender:" id="Gcg-Po-Wmu"/>
+                        <segue destination="2y1-1I-wSH" kind="show" identifier="FriendsToLocation" animates="NO" id="eLY-iL-gCC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uif-KD-DwQ" sceneMemberID="firstResponder"/>
@@ -1240,6 +1294,16 @@
                                     <action selector="onSchoolSignUpBtnPressed:" destination="S8r-3y-Kdp" eventType="touchUpInside" id="drB-Q0-nGU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading leaderboard..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="For-OB-s0V">
+                                <rect key="frame" x="179" y="107" width="205" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="frO-8O-WdZ"/>
+                                    <constraint firstAttribute="height" constant="21" id="ogj-LE-Jlt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1250,6 +1314,7 @@
                             <constraint firstItem="Q2f-cg-hyi" firstAttribute="centerX" secondItem="h9f-Gi-7ok" secondAttribute="centerX" id="96G-Pi-7Mj"/>
                             <constraint firstItem="cwP-So-lsa" firstAttribute="top" secondItem="umy-rh-9da" secondAttribute="bottom" constant="86" id="Ai6-vC-PZb"/>
                             <constraint firstItem="Trh-KO-gN3" firstAttribute="top" secondItem="umy-rh-9da" secondAttribute="bottom" constant="41" id="As8-F2-nL8"/>
+                            <constraint firstItem="For-OB-s0V" firstAttribute="centerX" secondItem="h9f-Gi-7ok" secondAttribute="centerX" id="GOt-2s-pJD"/>
                             <constraint firstItem="nIP-zf-3wP" firstAttribute="top" secondItem="ZQw-IU-d5N" secondAttribute="bottom" id="QBu-2y-QKa"/>
                             <constraint firstAttribute="trailing" secondItem="Trh-KO-gN3" secondAttribute="trailing" id="Rey-Bj-4nd"/>
                             <constraint firstAttribute="trailing" secondItem="umy-rh-9da" secondAttribute="trailing" id="Rj4-BX-abv"/>
@@ -1267,6 +1332,7 @@
                             <constraint firstItem="9Sc-zx-13e" firstAttribute="centerX" secondItem="h9f-Gi-7ok" secondAttribute="centerX" id="sU3-cI-lJn"/>
                             <constraint firstItem="cwP-So-lsa" firstAttribute="leading" secondItem="h9f-Gi-7ok" secondAttribute="leadingMargin" id="sWi-rU-jRa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tUD-kQ-pgD" secondAttribute="trailing" id="ta1-GV-VXp"/>
+                            <constraint firstItem="For-OB-s0V" firstAttribute="centerY" secondItem="h9f-Gi-7ok" secondAttribute="centerY" id="u3w-7q-FbS"/>
                             <constraint firstItem="tUD-kQ-pgD" firstAttribute="top" secondItem="umy-rh-9da" secondAttribute="bottom" constant="35" id="uiz-wZ-yyK"/>
                             <constraint firstItem="ZQw-IU-d5N" firstAttribute="top" secondItem="tUD-kQ-pgD" secondAttribute="bottom" id="vH5-uV-pp5"/>
                         </constraints>
@@ -1281,14 +1347,18 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="friendsButton" destination="jDa-dW-Kn1" id="rAj-la-3bi"/>
+                        <outlet property="loadingLabel" destination="For-OB-s0V" id="ITY-nB-n0R"/>
+                        <outlet property="locationButton" destination="gFU-aO-Avn" id="HNa-gD-DPD"/>
                         <outlet property="playerStaticLabel" destination="9Sc-zx-13e" id="IXH-JU-HpH"/>
                         <outlet property="rankingStaticLabel" destination="cwP-So-lsa" id="F9h-1F-aUu"/>
+                        <outlet property="schoolButton" destination="kJx-oe-RdA" id="p0g-nu-POW"/>
                         <outlet property="schoolNameLabel" destination="Trh-KO-gN3" id="XBw-Tp-fUA"/>
                         <outlet property="schoolSignUpBtn" destination="Q2f-cg-hyi" id="Bby-3D-QsV"/>
                         <outlet property="scoreStaticLabel" destination="tUD-kQ-pgD" id="kQw-mt-Mnh"/>
                         <outlet property="tableView" destination="ZQw-IU-d5N" id="b3E-bD-oYc"/>
-                        <segue destination="FeX-fg-eCV" kind="show" identifier="SchoolToFriends" id="ayt-cV-hJn"/>
-                        <segue destination="2y1-1I-wSH" kind="show" identifier="SchoolToLocation" id="2mZ-32-lOe"/>
+                        <segue destination="FeX-fg-eCV" kind="show" identifier="SchoolToFriends" animates="NO" id="ayt-cV-hJn"/>
+                        <segue destination="2y1-1I-wSH" kind="show" identifier="SchoolToLocation" animates="NO" id="2mZ-32-lOe"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="PickSchoolVC" id="d8E-qv-AXE"/>
                     </connections>
                 </viewController>
@@ -1537,8 +1607,8 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="qQD-f8-0ng" id="HA7-qt-VuA"/>
-                        <segue destination="S8r-3y-Kdp" kind="show" identifier="LocationToSchool" id="VJ5-mm-Cx1"/>
-                        <segue destination="FeX-fg-eCV" kind="show" identifier="LocationToFriends" id="IPE-Nx-FhG"/>
+                        <segue destination="S8r-3y-Kdp" kind="show" identifier="LocationToSchool" animates="NO" id="VJ5-mm-Cx1"/>
+                        <segue destination="FeX-fg-eCV" kind="show" identifier="LocationToFriends" animates="NO" id="IPE-Nx-FhG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7R-el-gw2" sceneMemberID="firstResponder"/>

@@ -85,6 +85,7 @@
 		6430A7681CE8903C00B32841 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640EE4A91CDC04B400E1B68F /* FBSDKMessengerShareKit.framework */; };
 		6430A7701CE9A14E00B32841 /* SchoolLeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430A76F1CE9A14E00B32841 /* SchoolLeaderboardVC.swift */; };
 		6430A7721CE9A19000B32841 /* LocationLeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430A7711CE9A19000B32841 /* LocationLeaderboardVC.swift */; };
+		6430A7741CEAEE1500B32841 /* StartUpPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430A7731CEAEE1500B32841 /* StartUpPageVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,7 @@
 		6430A7551CE867E800B32841 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6430A76F1CE9A14E00B32841 /* SchoolLeaderboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolLeaderboardVC.swift; sourceTree = "<group>"; };
 		6430A7711CE9A19000B32841 /* LocationLeaderboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationLeaderboardVC.swift; path = ../LocationLeaderboardVC.swift; sourceTree = "<group>"; };
+		6430A7731CEAEE1500B32841 /* StartUpPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartUpPageVC.swift; path = ../StartUpPageVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,6 +536,7 @@
 				640EE49A1CDC049A00E1B68F /* Frameworks */,
 				640EE40F1CDAD2A500E1B68F /* Controller */,
 				640EE3FD1CDACF5B00E1B68F /* Main.storyboard */,
+				6430A7731CEAEE1500B32841 /* StartUpPageVC.swift */,
 				640EE69E1CDC3FB900E1B68F /* FacebookOrEmailVC.swift */,
 				640EE40D1CDAD1B200E1B68F /* SignUpOrSignInVC.swift */,
 				640EE40B1CDAD1A300E1B68F /* PickSchoolVC.swift */,
@@ -805,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				640EE4081CDAD15D00E1B68F /* SignUpVC.swift in Sources */,
+				6430A7741CEAEE1500B32841 /* StartUpPageVC.swift in Sources */,
 				640EE48D1CDAD97C00E1B68F /* Pods-NotSureIfThisWorksUITests-dummy.m in Sources */,
 				6430A7701CE9A14E00B32841 /* SchoolLeaderboardVC.swift in Sources */,
 				640EE4731CDAD97C00E1B68F /* Pods-acknowledgements.markdown in Sources */,

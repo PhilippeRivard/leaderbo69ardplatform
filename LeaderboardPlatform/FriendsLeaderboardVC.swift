@@ -9,10 +9,23 @@
 import UIKit
 import AVFoundation
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
+
 
 class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var friendsButton: UIButton!
+    
+    @IBOutlet weak var schoolButton: UIButton!
+    
+    @IBOutlet weak var locationButton: UIButton!
+    
+    
+    @IBOutlet weak var loadingLabel: UILabel!
+    
     
     var highScore: String?
     var currentPlayerName: String?
@@ -21,12 +34,22 @@ class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableView
     var numberOfNodes: Int?
     var backwardsArrayFinished = false
     var childWasAdded = false
+    var originalColor: UIColor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.hidden = true
+        
+        originalColor = friendsButton.backgroundColor
+        
+        friendsButton.backgroundColor = UIColor.grayColor()
+        
+        
+        returnUserData()
         /*
         DataService.ds.REF_BASE.childByAppendingPath("LCC").childByAppendingPath("urmom").setPriority(16)
         DataService.ds.REF_BASE.childByAppendingPath("LCC").childByAppendingPath("urdad").setPriority(12)
@@ -36,6 +59,8 @@ class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableView
          
  */
         
+        //THIS IS THE RIGHT THING
+        /*
         DataService.ds.REF_BASE.childByAppendingPath("LCC").observeEventType(.Value, withBlock: { snapshot in
             self.players = []
             self.backwardsArrayFinished = false
@@ -49,11 +74,14 @@ class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableView
             self.players = self.players.reverse()
             self.tableView.reloadData()
         })
+         
+         //THIS IS THE RIGHT THING
+ */
         
         
         
         
-        tableView.hidden = false
+        
         /*
         DataService.ds.REF_USERS.childByAppendingPath("facebook:10209204778739230").childByAppendingPath("school").observeSingleEventOfType(.Value, withBlock: { snapshot in
             if snapshot.value as? String != nil {
@@ -124,9 +152,15 @@ class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        players.sortInPlace { (element1, element2) -> Bool in
+            return element1.highscore > element2.highscore
+        }
+        print(players[0].highscore)
+        
         
         let player = players[indexPath.row]
         if let cell = tableView.dequeueReusableCellWithIdentifier("RankingCell") as? RankingCell {
+            
             cell.configureCell(player, number: indexPath.row)
              
             return cell
@@ -195,12 +229,65 @@ class FriendsLeaderboardVC: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func onSchoolBtnPressed(sender: AnyObject) {
+        friendsButton.backgroundColor = originalColor
+        schoolButton.backgroundColor = UIColor.grayColor()
         performSegueWithIdentifier("FriendsToSchool", sender: nil)
         
     }
     
     @IBAction func onLocationBtnPressed(sender: AnyObject) {
+        friendsButton.backgroundColor = originalColor
+        locationButton.backgroundColor = UIColor.grayColor()
         performSegueWithIdentifier("FriendsToLocation", sender: nil)
+    }
+    
+    func returnUserData()
+    {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                
+                self.players = []
+                self.backwardsArrayFinished = false
+                print("fetched user: \(result)")
+                //let userName : NSString = result.valueForKey("name") as! NSString
+                //print("User Name is: \(userName)")
+                //let userEmail : NSString = result.valueForKey("email") as! NSString
+                //print("User Email is: \(userEmail)")
+                print(result.valueForKey("data")!)
+                let friends = result.valueForKey("data") as! NSArray
+                    print(friends[0].valueForKey("id"))
+                for friend in friends {
+                    print("youre gay")
+                    DataService.ds.REF_USERS.childByAppendingPath(friend.valueForKey("id") as! String).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        print("I'M IN THE ID")
+                        print(friend.valueForKey("name") as! String)
+                        print(snapshot.childSnapshotForPath("highscore").value as! Int)
+                        let player = Player(playerName: friend.valueForKey("name") as! String, highscore: snapshot.childSnapshotForPath("highscore").value as! Int)
+                        self.players.append(player)
+                        print("you're gayer")
+                        print(self.players)
+                        if self.players.count == friends.count {
+                            self.tableView.reloadData()
+                            self.loadingLabel.hidden = true
+                            self.tableView.hidden = false
+                        }
+                        
+                    })
+                    
+                }
+                print(self.players)
+                //self.tableView.reloadData()
+                
+            }
+        })
     }
     
 

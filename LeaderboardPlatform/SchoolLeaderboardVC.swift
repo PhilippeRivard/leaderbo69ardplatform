@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Firebase
 
+
 class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,6 +25,16 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var schoolSignUpBtn: UIButton!
     
     
+    @IBOutlet weak var friendsButton: UIButton!
+    
+    @IBOutlet weak var schoolButton: UIButton!
+    
+    @IBOutlet weak var locationButton: UIButton!
+    
+    @IBOutlet weak var loadingLabel: UILabel!
+    
+    
+    
     var highScore: String?
     var currentPlayerName: String?
     var counter = 0
@@ -32,20 +43,44 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
     var backwardsArrayFinished = false
     var childWasAdded = false
     var mySchool: String?
+    var originalColor: UIColor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
+        schoolSignUpBtn.hidden = true
         
+        originalColor = schoolButton.backgroundColor
+        schoolButton.backgroundColor = UIColor.grayColor()
+        /*
         tableView.hidden = true
         schoolNameLabel.hidden = true
         rankingStaticLabel.hidden = true
         playerStaticLabel.hidden = true
         scoreStaticLabel.hidden = true
-        print("gay")
+ */
         
+        print("gay")
+        DataService.ds.REF_BASE.childByAppendingPath("LCC").observeEventType(.Value, withBlock: { snapshot in
+            self.players = []
+            self.backwardsArrayFinished = false
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                for snap in snapshots {
+                    let player = Player(playerName: snap.key, highscore: (snap.value as? Int)!)
+                    self.players.append(player)
+                    
+                }
+            }
+            self.players = self.players.reverse()
+            
+            
+            self.tableView.reloadData()
+            self.loadingLabel.hidden = true
+            self.tableView.hidden = false
+        })
+        /*
         DataService.ds.REF_USERS.childByAppendingPath(NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String).childByAppendingPath("school").observeSingleEventOfType(.Value, withBlock: { snapshot in
             print("pussy")
             if snapshot.value as? String != nil {
@@ -64,14 +99,15 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
             else {
                 self.noSchoolSignedUp()
             }
-            print(String(snapshot.value))
+ */
+            //print(String(snapshot.value))
             /*
              if snapshot.value != nil {
              self.tableView.hidden = false
              }
              */
-        })
-        
+        //})
+        /*
         print("fag")
         if mySchool != nil {
             DataService.ds.REF_BASE.childByAppendingPath(mySchool).observeEventType(.ChildChanged, withBlock: { snapshot in
@@ -80,7 +116,7 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.redoPopulate()
             })
         }
-        
+        */
         
     }
 
@@ -95,9 +131,19 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
-        
+        players.sortInPlace { (element1, element2) -> Bool in
+            return element1.highscore > element2.highscore
+        }
+        let player = players[indexPath.row]
+        if let cell = tableView.dequeueReusableCellWithIdentifier("RankingCell") as? RankingCell {
+            
+            cell.configureCell(player, number: indexPath.row)
+            
+            return cell
+            
+            
+        }
+        /*
         if let cell = tableView.dequeueReusableCellWithIdentifier("RankingCell", forIndexPath: indexPath) as? RankingCell {
             let player: Player!
             
@@ -121,6 +167,7 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
             
             return cell
         }
+ */
             
             
         else {
@@ -148,9 +195,15 @@ class SchoolLeaderboardVC: UIViewController, UITableViewDataSource, UITableViewD
         })
     }
     @IBAction func onFriendsBtnPressed(sender: AnyObject) {
+        schoolButton.backgroundColor = originalColor
+        friendsButton.backgroundColor = UIColor.grayColor()
+        performSegueWithIdentifier("SchoolToFriends", sender: nil)
     }
     
     @IBAction func onLocationBtnPressed(sender: AnyObject) {
+        schoolButton.backgroundColor = originalColor
+        locationButton.backgroundColor = UIColor.grayColor()
+        performSegueWithIdentifier("SchoolToLocation", sender: nil)
     }
     
     
